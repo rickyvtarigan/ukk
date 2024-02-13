@@ -29,13 +29,6 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
 
                 <li class="nav-item nav-category">Pasien Action</li>
                 <li class="nav-item">
-                    <a class="nav-link link" id='daftar'>
-                        <i class="fa-solid fa-plus fs-5 me-3"></i>
-                        <span class="menu-title">Pendaftaran</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link link" id='rkm'>
                         <i class="fa-solid fa-person-breastfeeding fs-5 me-3"></i>
                         <span class="menu-title">Pasien</span>
@@ -47,7 +40,7 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
                 <li class="nav-item nav-category">DATA</li>
 
                 <li class="nav-item">
-                    <a class="nav-link link" id='daftar_user'>
+                    <a class="nav-link link" id='daftarUser'>
                         <i class="fa-solid fa-hospital-user fs-5 me-3"></i>
                         <span class="menu-title">Akun</span>
                         <i class="menu-arrow"></i>
@@ -69,20 +62,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
                     <div class="col-sm-12">
                         <div class="home-tab">
                             <div class="d-sm-flex align-items-center justify-content-end border-bottom">
-                                <!-- <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab"
-                                            href="#overview" role="tab" aria-controls="overview"
-                                            aria-selected="true">Pasien</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link border-0" id="more-tab" data-bs-toggle="tab" href="#more"
-                                            role="tab" aria-selected="false">More</a>
-                                    </li>
-                                </ul> -->
                                 <div>
                                     <!-- TAB -->
-                                    <?php include_once "../components/dashboard/_tab.php"  ?>
+                                    <?php //include_once "../components/dashboard/_tab.php"  ?>
                                     <!-- TAB -->
                                 </div>
                             </div>
@@ -91,12 +73,6 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
                                     aria-labelledby="overview">
                                     <!-- INFORMASI -->
                                     <?php include_once "../components/dashboard/admin/_" . $act . ".php" ?>
-                                </div>
-                                <div class="tab-content tab-content-basic">
-                                    <div class="tab-pane fade show " id="more" role="tabpanel"
-                                        aria-labelledby="Audiences">
-                                        <h2>AUDIENCES</h2>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -123,3 +99,20 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+
+
+<script>
+const __BASE = '';
+const _urlParams = new URLSearchParams(window.location.search);
+const links = document.querySelectorAll(".link");
+
+
+links.forEach(link => {
+    link.href = `index.php?auth=admin&act=${link.id}`;
+    const query_get = _urlParams.get('act');
+
+    if (query_get == link.id) {
+        link.parentElement.classList.add("active");
+    }
+})
+</script>

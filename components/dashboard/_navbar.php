@@ -24,11 +24,10 @@ $user = isset($_GET["auth"]) ? $_GET["auth"] : false;
                 <h3 class="welcome-sub-text">Your performance summary this week </h3>
             </li>
         </ul> -->
-        <div class=' font-weight-semibold d-none d-lg-block ms-0'>
+        <div class='font-weight-semibold d-none d-lg-block ms-0'>
             <h3 class="welcome-text">Good Morning, <span
                     class="text-black fw-bold"><?= $_SESSION['user']->username; ?></span>
             </h3>
-            <p class='text-body-secondary'><?= $_SESSION['user']->level; ?></p>
             <h5 class="welcome-sub-text">Selamat Bekerja dan melayani pasien</h5>
         </div>
         <ul class="navbar-nav ms-auto">
