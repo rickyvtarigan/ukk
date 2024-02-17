@@ -46,7 +46,7 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
                             <div class="d-sm-flex align-items-center justify-content-end border-bottom">
                                 <div>
                                     <!-- TAB -->
-                                    <?php include_once "../components/dashboard/_tab.php"  ?>
+                                    <?php //include_once "../components/dashboard/_tab.php"  ?>
                                     <!-- TAB -->
                                 </div>
                             </div>
@@ -54,7 +54,7 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'overview';
                                 <div class="tab-pane fade show active" id="overview" role="tabpanel"
                                     aria-labelledby="overview">
                                     <!-- INFORMASI -->
-                                    <?php include_once "../components/dashboard/admin/_" . $act . ".php" ?>
+                                    <?php include_once "../components/dashboard/dokter/_" . $act . ".php" ?>
                                 </div>
                             </div>
                         </div>
