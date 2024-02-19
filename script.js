@@ -1,3 +1,5 @@
+const { Notyf } = require("notyf");
+
 function showOptionValue(value) {
 	const user_level = document.querySelector("#user_level");
 	const form_dokter_wrapper = document.querySelector(".form_dokter_wrapper");

@@ -1,37 +1,72 @@
 <?php include_once "../config/db.php" ?>
-<div class="col-lg-12 grid-margin stretch-card">
-    <!-- TOAST IF SUCCESS -->
-    <?php if(isset($_SESSION['delete_fail'])):?>
-    <!-- Flexbox container for aligning the toasts -->
-    <!-- Then put toasts within -->
-    <div class="toast show align-items-center text-bg-success text-white shadow-lg mt-0 border-0 tral top-0 start-50 translate-middle-x position-relative"
-        role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body fw-bold">
-                Update Data Dokter Berhasil Dilakukan!
-            </div>
-            <button type="button" onclick="<?php unset($_SESSION['update_success']); ?>"
-                class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+
+
+<?php if(isset($_SESSION['ask_alert'])) :   ?>
+<!-- <div class='overlay w-100 h-100 position-absolute top-0 bg-black opacity-50 z-1'></div> -->
+<div class="toast  show align-items-center mb-5 shadow-lg mt-0 border-0 tral top-0  start-50 translate-middle-x position-relative"
+    role="alert" aria-live="assertive" aria-atomic="true" style='transition: 0.5s;'>
+    <div class="d-flex">
+        <div class='d-flex justify-content-center align-items-center px-4 bg-warning rounded-start'>
+            <i class="fa-solid fa-circle-exclamation text-white"></i>
+        </div>
+        <div class="toast-body p-4 bg-white">
+            <h4 class='fw-bold'> Peringatan!!</h4>
+            <p>
+                Apakah anda yakin menghapus data dokter
+            </p>
+
+        </div>
+        <div class="pt-4 rounded-end bg-white">
+            <button type="button" class="btn btn-sm text-white " style='background:red'>Hapus</button>
+            <button type="button" onclick="<?php unset($_SESSION['ask_alert']); ?>" class="btn btn-secondary btn-sm"
+                data-bs-dismiss="toast">Close</button>
         </div>
     </div>
-    <?php endif; ?>
-    <!-- TOAST IF SUCCESS -->
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Akun Pengguna</h4>
-            <p class="card-description">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    Daftarkan Akun
-                </button>
-                <?= isset($_SESSION['add_fail']) ? "NAMA SUDAH TERDAFTAR" : '' ?>
+</div>
 
-            </p>
+<?php endif; ?>
+<!-- TOAST IF SUCCESS -->
+<?php if(isset($_SESSION['update_success'])):?>
+<!-- Flexbox container for aligning the toasts -->
+<!-- Then put toasts within -->
+<div class=" toast show align-items-center text-bg-success text-white shadow-lg mt-0 border-0 tral top-0 start-50
+                translate-middle-x position-relative" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body fw-bold">
+            Update Data Dokter Berhasil Dilakukan!
+        </div>
+        <button type="button" onclick="<?php unset($_SESSION['update_success']); ?>"
+            class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+<?php endif; ?>
+<!-- TOAST IF SUCCESS -->
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class=" card card-rounded">
+        <div class="card-body">
+            <div class='d-flex justify-content-between'>
+                <div>
+                    <h4 class="card-title fw-bold ms-3">Akun Pengguna</h4>
+                    <p class="card-description ms-3" style="margin-top: -13px;">
+                        akun pengguna yang sudah terdaftar
+                    </p>
+                </div>
+                <div class='buttons'>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary text-white px-3 py-3 fw-bold"
+                        style='line-height: normal;' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span>
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                        Daftarkan Akun
+                    </button>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Username</th>
                             <th>Level</th>
                             <th>ACTION</th>
@@ -43,13 +78,14 @@
                             foreach($data as $d => $value) :
                         ?>
                         <tr>
+                            <td><?= $d+1; ?></td>
                             <td><?= $value['username']; ?></td>
                             <td><?= $value['level']; ?></td>
                             <td>
                                 <a type='button' class=' btn btn-warning text-white' data-bs-toggle="modal"
                                     data-bs-target="#editModal<?php echo $value['id_user']; ?>">Edit</a>
                                 <a class='btn btn-danger text-white  <?= $value['username'] == 'jojo' ? 'd-none' : '' ?>'
-                                    href='../srcode/process/_hapusUser.php?id=<?= $value['id_user'];
+                                    href='../src/process/User.php?id=<?= $value['id_user'];
                                     ?>&act=daftar_user'>Delete</a>
                             </td>
                         </tr>
@@ -82,7 +118,8 @@
                                                         <div class="form-group">
                                                             <label for='password'>Password</label>
                                                             <input name='password' type="password" class='form-control'
-                                                                id='password' placeholder='masukkan password baru'
+                                                                id='password'
+                                                                placeholder='masukkan password baru atau password sebelummnya'
                                                                 required />
                                                         </div>
                                                         <div class="form-group">

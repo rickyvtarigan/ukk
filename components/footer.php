@@ -1,4 +1,6 @@
 <!-- plugins:js -->
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
 <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
 <script src="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <!-- endinject -->

@@ -81,3 +81,37 @@ if(isset($_POST['edit_user'])) {
     }
 
 }
+
+
+// Hapus User
+if(isset($_GET['id'])) {
+    $idUser = $_GET['id'];
+
+
+    // ambil data user dan cek jika role = dokter dan munculkan alert 
+    $getUser = $db->query("SELECT username, level FROM user JOIN user_level ON user.id_level = user_level.id_level WHERE id_user = '$idUser'")->fetch_object();
+    
+
+
+    if($getUser->level === 'dokter') {
+        $_SESSION['ask_alert'] = true;
+
+        
+
+        header('Location:../../pages/index.php?auth=admin&act=daftarUser');
+        exit();
+    }
+
+        
+    // query hapus user
+    $query = $db->query("DELETE FROM user WHERE id_user = '$idUser'");
+
+    // kalau gagal
+    if(!$query) {
+        header('Location:../../pages/index.php?auth=admin&act=daftarUser');
+        exit();
+    }
+
+    $_SESSION['deleteUser_success'] = true;
+    header('Location:../../pages/index.php?auth=admin&act=daftarUser');
+}
