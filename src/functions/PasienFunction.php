@@ -16,3 +16,16 @@ function addPasien($_nama, $_tgl_lahir, $_tmpt_lahir, $_jk, $_alamat, $_notelp, 
         return $data; // true if success
     }
 }
+
+
+function getPasien() {
+    global $db;
+
+    $pasiens = $db->query("SELECT * FROM pasien");
+
+    if(!$pasiens) {
+        return false;
+    }
+
+    return $pasiens;
+}

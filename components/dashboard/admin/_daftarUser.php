@@ -1,5 +1,5 @@
 <?php include_once "../config/db.php" ?>
-<div class="col-lg-10 grid-margin stretch-card">
+<div class="col-lg-12 grid-margin stretch-card">
     <!-- TOAST IF SUCCESS -->
     <?php if(isset($_SESSION['delete_fail'])):?>
     <!-- Flexbox container for aligning the toasts -->
