@@ -15,7 +15,7 @@ function login(string $username, string $password) {
     $isValidUsername = getUserByUsername($username);
 
     if(!$isValidUsername) {
-        $_SESSION['login_fail'] = true;
+        $_SESSION['username_fail'] = true;
         header("Location:".BASE_URL."pages/login.php");
         exit();
     }
@@ -23,8 +23,9 @@ function login(string $username, string $password) {
     // validasi jika password salah
     $isValidPassword = checkPassword($isValidUsername, $password);
 
+
     if(!$isValidPassword) {
-        $_SESSION['login_fail'] = true;
+        $_SESSION['password_fail'] = true;
         header("Location:".BASE_URL."pages/login.php");
         exit();
     }

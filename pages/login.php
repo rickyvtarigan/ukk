@@ -1,5 +1,6 @@
 <!-- Import Header -->
 <?php include '../components/header.php'; ?>
+<?php session_start() ?>
 <!-- Import Header -->
 
 
@@ -19,9 +20,23 @@
                                 <input type="username" class="form-control form-control-lg" id="exampleInputEmail1"
                                     placeholder="Username" required autocomplete="off" name='username'>
                             </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
-                                    placeholder="Password" required autocomplete="off" name='password'>
+                            <div class="form-group ">
+                                <label for="validationCustomUsername" class="form-label">Password</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <i class="fa-solid fa-key"></i>
+                                    </span>
+                                    <input type="password"
+                                        class="form-control form-control-lg rounded-end <?= isset($_SESSION['password_fail']) ? 'is-invalid border-2' : '' ?>"
+                                        id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+                                        placeholder="Password" required autocomplete="off" name='password'>
+                                </div>
+                                <!-- pesan gagal -->
+                                <?php if(isset($_SESSION['password_fail'])): ?>
+                                <span class="errorMessage text-danger mt-2 d-block">
+                                    Password tidak cocok
+                                </span>
+                                <?php endif; ?>
                             </div>
                             <div class="mt-3">
                                 <button type='submit'
