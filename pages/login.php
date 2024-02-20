@@ -9,12 +9,32 @@
         <div class="content-wrapper d-flex align-items-center auth px-0">
             <div class="row w-100 mx-0">
                 <div class="col-lg-4 mx-auto">
+
+                    <!-- Alert Message ketika error -->
+                    <?php if(isset($_SESSION['username_fail'])) : ?>
+                    <div class='alert message bg-danger text-white px-4 d-flex align-items-center animate__animated animate__headShake'
+                        onchange="<?php session_destroy(); ?>">
+                        <i class="fa-solid fa-user-slash"></i>
+                        <div>
+
+                            <h5 class="fw-bold">Login Gagal</h5>
+                            <span>
+                                Akun Sepertinya tidak / belum terdaftar
+                            </span>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <!-- Alert Message ketika error -->
+
+
+
+
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                         <div class="brand-logo">
                             <img src="../../assets/images/logo.svg" alt="logo klinik">
                         </div>
-                        <h4>Hello! let's get started</h4>
-                        <h6 class="fw-light">login untuk melanjutkan</h6>
+                        <h4>Hello! </h4>
+                        <p class="fw-light">Login untuk masuk ke dashboard anda</p>
                         <form class="pt-3" method="post" action="../src/process/Auth.php">
                             <div class="form-group">
                                 <input type="username" class="form-control form-control-lg" id="exampleInputEmail1"
@@ -43,12 +63,14 @@
                                     class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                                     href="">Login</button>
                             </div>
-                            <div class="text-center mt-4 fw-normal text-body-secondary">
-                                jika belum punya akun, hubungi admin.
-                                <!-- Don't have an account? <a href="register.html" class="text-primary">Create</a> -->
-                            </div>
+
                         </form>
+
                     </div>
+                </div>
+                <div class="text-center mt-5 fw-normal text-body-secondary">
+                    jika belum punya akun, hubungi admin.
+                    <!-- Don't have an account? <a href="register.html" class="text-primary">Create</a> -->
                 </div>
             </div>
         </div>
